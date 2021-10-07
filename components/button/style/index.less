@@ -1,0 +1,64 @@
+@import 'ant-design-vue/lib/button/style/index.less';
+@import 'ant-design-vue/lib/popover/style/index.less';
+@import '../../style/variables.less';
+
+@colors: {
+  primary: @alv-primary-color;
+  danger: @alv-danger-color;
+  success: @alv-success-color;
+  warning: @alv-warning-color;
+};
+
+// button
+.colors(@value) {
+  background-color: @value;
+  border-color: @value;
+}
+
+.colorsMixin() {
+  each(@colors, {
+    &-@{key} {
+      .colors(@value);
+    }
+  })
+}
+
+.alv-button {
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: @alv-primary-color;
+    color: @alv-primary-color;
+  }
+  .colorsMixin;
+}
+
+// link button
+.linkcolors(@value) {
+  color: @value;
+  &:hover,
+  &:focus,
+  &:active {
+    color: lighten(@value, 20%);
+  }
+}
+
+.linkcolorsMixin() {
+  each(@colors, {
+    &-@{key} {
+      .linkcolors(@value);
+    }
+  })
+}
+
+.alv-link-button {
+  .linkcolors(@alv-primary-color);
+  .linkcolorsMixin;
+}
+
+.alv-group-button {
+  .active-button {
+    color: @alv-primary-color;
+    border-color: @alv-primary-color;
+  }
+}
