@@ -1,7 +1,7 @@
 const path = require('path')
-const VueLoaderPlugin = require('vue-loader/dist/plugin').default
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // 解析.env文件，注入process.env
@@ -14,33 +14,6 @@ const getProcessEnv = (env) => {
     tempEnv[key] = JSON.stringify(env[key])
   })
   return tempEnv
-}
-
-const babelConfig = {
-  cacheDirectory: true,
-  presets: [
-    [
-      '@babel/preset-env',
-      {
-        targets: {
-          browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'not ie 11']
-        }
-      }
-    ],
-    '@babel/preset-typescript'
-  ],
-  plugins: [
-    // [
-    //   'babel-plugin-import' 
-    // ]
-    ['@vue/babel-plugin-jsx', { mergeProps: false, enableObjectSlots: false }],
-    '@babel/plugin-proposal-optional-chaining',
-    '@babel/plugin-transform-object-assign',
-    '@babel/plugin-proposal-object-rest-spread',
-    '@babel/plugin-proposal-export-default-from',
-    '@babel/plugin-proposal-export-namespace-from',
-    '@babel/plugin-proposal-class-properties'
-  ]
 }
 
 module.exports = {
@@ -57,22 +30,34 @@ module.exports = {
         loader: 'vue-loader'
       },
       {
-        test: /\.(ts|tsx)$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: babelConfig
-          },
-          {
-            loader: 'ts-loader',
-            options: {
-              transpileOnly: true,
-              appendTsSuffixTo: ['\\.vue$'],
-              happyPackMode: false
-            }
-          }
-        ],
-        exclude: /node_modules/
+        test: /\.(js|jsx)$/,
+        loader: 'babel-loader',
+        exclude: /pickr.*js/,
+        options: {
+          presets: [
+            [
+              'env',
+              {
+                targets: {
+                  browsers: [
+                    'last 2 versions',
+                    'Firefox ESR',
+                    '> 1%',
+                    'ie >= 9',
+                    'iOS >= 8',
+                    'Android >= 4',
+                  ],
+                },
+              },
+            ],
+          ],
+          plugins: [
+            'transform-vue-jsx',
+            'transform-object-assign',
+            'transform-object-rest-spread',
+            'transform-class-properties',
+          ],
+        },
       },
       {
         test: /\.less$/,
@@ -108,7 +93,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.ts', '.tsx', '.vue', '.md']
+    extensions: ['.js', '.jsx', '.vue', '.md']
   },
   devServer: {
     port: 8082,
