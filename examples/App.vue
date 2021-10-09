@@ -1,29 +1,33 @@
 <template>
   <div>
-    <alv-button type="danger" @click="handleClick">click</alv-button>
-    <!-- <alv-link-button @click="handleClick">link click</alv-link-button>
+    <alv-button type="dashed" danger @click="reset">click</alv-button>
     <alv-back-button @click="handleClick">back</alv-back-button>
-    <alv-group-button :dataSource="groupButtonData" :multiple="true"></alv-group-button>
     <alv-confirm-button
-      title="confirm?"
+      title="Are you sure?"
+      type="link"
+      danger
+      okText="Y"
+      cancelText="N"
+      okType="warning"
+      icon="left"
       @confirm="handleConfirm"
       @cancel="handleCancel"
-    >confirm</alv-confirm-button> -->
+    >confirm</alv-confirm-button>
+    <alv-group-button :dataSource="groupButtonData" :multiple="false" ref="groupBtn"></alv-group-button>
   </div>
 </template>
 
 <script>
 import { AlvButton } from '../components'
 
-// const { AlvLinkButton, AlvBackButton, AlvGroupButton, AlvConfirmButton } = AlvButton
+const { AlvBackButton, AlvConfirmButton, AlvGroupButton } = AlvButton
 
 export default {
   components: {
     AlvButton,
-    // AlvLinkButton,
-    // AlvBackButton,
-    // AlvGroupButton,
-    // AlvConfirmButton
+    AlvBackButton,
+    AlvConfirmButton,
+    AlvGroupButton,
   },
   data () {
     this.groupButtonData = [
@@ -53,6 +57,9 @@ export default {
     },
     handleCancel () {
       console.log('cancel!!!')
+    },
+    reset () {
+      this.$refs.groupBtn.reset()
     }
   }
 }

@@ -1,0 +1,115 @@
+@import "ant-design-vue/lib/button/style/index.less";
+@import "ant-design-vue/lib/popover/style/index.less";
+@import "../../style/variables.less";
+
+@colors: {
+  primary: @alv-primary-color;
+  danger: @alv-danger-color;
+  success: @alv-success-color;
+  warning: @alv-warning-color;
+}
+
+// default button color
+.defaultColors(@value) {
+  border-color: @value;
+  color: @value;
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: @value;
+    color: @value;
+    opacity: @hover-opacity;
+  }
+}
+
+.defaultColorMixins() {
+  each(@colors, {
+    &-@{key} {
+      .defaultColors(@value);
+    }
+  })
+}
+
+// primary button color
+.primaryColors(@value) {
+  background-color: @value;
+  border-color: @value;
+  color: @white-001;
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: @value;
+    border-color: @value;
+    color: @white-001;
+    opacity: @hover-opacity;
+  }
+}
+
+.primaryColorMixins() {
+  each(@colors, {
+    &-primary&-@{key} {
+      .primaryColors(@value);
+    }
+  })
+}
+
+// link button color
+.linkColors(@value) {
+  border: none;
+  background-color: transparent;
+  color: @value;
+  &:hover,
+  &:focus,
+  &:active {
+    opacity: @hover-opacity;
+  }
+}
+
+.linkColorMixins() {
+  each(@colors, {
+    &-link&-@{key} {
+      .linkColors(@value);
+    }
+  })
+}
+
+// button
+.alv-btn {
+  .defaultColorMixins;
+
+  .primaryColorMixins;
+
+  .linkColorMixins;
+}
+
+// back button
+.alv-back-btn {
+  display: inline-block;
+
+  &-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  & &-icon {
+    display: flex;
+    align-items: center;
+    color: @alv-primary-color;
+  }
+}
+
+// confirm button
+.alv-confirm-btn {
+  .ant-popover-message > .anticon {
+    line-height: 1;
+  }
+}
+
+// group button
+.alv-group-btn {
+  &-active {
+    border-color: @alv-primary-color;
+    color: @alv-primary-color;
+  }
+}
