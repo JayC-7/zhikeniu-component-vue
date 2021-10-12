@@ -1,0 +1,24 @@
+@import "ant-design-vue/lib/drawer/style/index.css";
+@import "../../style/variables.less";
+
+.alv-drawer {
+  .alv-drawer-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    border-top: @container-border;
+    padding: 10px 16px;
+    background: #fff;
+    text-align: right;
+    z-index: 10;
+
+    & > .alv-btn {
+      margin-left: 8px;
+    }
+  }
+
+  .ant-drawer-body {
+    padding-bottom: 72px !important;
+  }
+}

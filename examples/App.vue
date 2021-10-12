@@ -15,10 +15,15 @@
     >confirm</alv-confirm-button>
     <alv-group-button :dataSource="groupButtonData" :multiple="false" ref="groupBtn"></alv-group-button>
     <alv-multi-cascader :defaultValue="[['p2'], ['p1', 'c1', 'sc1']]" changeOnSelect :options="cascaderOptions" />
+    <alv-drawer :visible="drawerVisible" hideFooter title="标题" @close="drawerClose" @ok="drawerOk">
+      hello~<br />
+      hello~<br />
+      hello~
+    </alv-drawer>
   </div>
 </template>
 <script>
-import { AlvButton, AlvCascader } from '../components'
+import { AlvButton, AlvCascader, AlvDrawer } from '../components'
 
 const { AlvBackButton, AlvConfirmButton, AlvGroupButton } = AlvButton
 const { AlvMultiCascader } = AlvCascader
@@ -30,6 +35,7 @@ export default {
     AlvConfirmButton,
     AlvGroupButton,
     AlvMultiCascader,
+    AlvDrawer,
   },
   data () {
     this.groupButtonData = [
@@ -72,12 +78,14 @@ export default {
       }
     ]
     return {
-      testTxt: 'test1'
+      testTxt: 'test1',
+      drawerVisible: false,
     }
   },
   methods: {
     handleClick () {
       console.log('==click')
+      this.showDrawer()
       this.testTxt = 'test' + Date.now()
     },
     handleConfirm () {
@@ -88,7 +96,21 @@ export default {
     },
     reset () {
       this.$refs.groupBtn.reset()
-    }
+    },
+    showDrawer () {
+      this.drawerVisible = true
+    },
+    hideDrawer () {
+      this.drawerVisible = false
+    },
+    drawerClose () {
+      this.hideDrawer()
+      console.log('===drawer close')
+    },
+    drawerOk () {
+      this.hideDrawer()
+      console.log('===drawer ok')
+    },
   }
 }
 </script>

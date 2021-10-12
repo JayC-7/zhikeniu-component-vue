@@ -12,6 +12,8 @@ const props = {
 
 /**
  * 级联多选组件
+ * @param {array} options 级联组件的选项，[{ label: '', value: '', children: [...] }]
+ * @param {string} divider 父项与子项的分隔符号，默认值为”>“
  */
 export default {
   props,
@@ -20,9 +22,6 @@ export default {
       selectedValue: [],
       selectedTree: {},
     }
-  },
-  created () {
-    console.log('===', this.defaultValue)
   },
   mounted () {
     this.initValue(this.defaultValue, this.options)
@@ -48,7 +47,6 @@ export default {
     // 填充初始值
     initValue (value, options) {
       const valueResult = this.getValueFromOptions(options, value)
-      console.log('===init', valueResult)
       valueResult.forEach(item => {
         this.setSelectedTree(item, this.selectedTree)
       })
