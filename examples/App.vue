@@ -14,13 +14,14 @@
       @cancel="handleCancel"
     >confirm</alv-confirm-button>
     <alv-group-button :dataSource="groupButtonData" :multiple="false" ref="groupBtn"></alv-group-button>
+    <alv-multi-cascader :defaultValue="[['p2'], ['p1', 'c1', 'sc1']]" changeOnSelect :options="cascaderOptions" />
   </div>
 </template>
-
 <script>
-import { AlvButton } from '../components'
+import { AlvButton, AlvCascader } from '../components'
 
 const { AlvBackButton, AlvConfirmButton, AlvGroupButton } = AlvButton
+const { AlvMultiCascader } = AlvCascader
 
 export default {
   components: {
@@ -28,6 +29,7 @@ export default {
     AlvBackButton,
     AlvConfirmButton,
     AlvGroupButton,
+    AlvMultiCascader,
   },
   data () {
     this.groupButtonData = [
@@ -41,6 +43,32 @@ export default {
         label: 'group button2',
         key: '2',
         onClick: () => {console.log('===group button2')}
+      }
+    ]
+    this.cascaderOptions = [
+      {
+        value: 'p1',
+        label: 'P1',
+        children: [
+          {
+            value: 'c1',
+            label: 'C1',
+            children: [
+              {
+                value: 'sc1',
+                label: 'SC1'
+              }
+            ]
+          },
+          {
+            value: 'c2',
+            label: 'C2',
+          }
+        ]
+      },
+      {
+        value: 'p2',
+        label: 'P2'
       }
     ]
     return {
