@@ -1,0 +1,22 @@
+.alv-editable-cell {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    .alv-editable-cell-update {
+      display: block;
+    }
+  }
+
+  &-update {
+    display: none;
+    margin-left: 16px;
+  }
+
+  &-editing {
+    .alv-editable-cell-update {
+      display: block;
+    }
+  }
+}

@@ -20,10 +20,11 @@
       hello~<br />
       hello~
     </alv-drawer>
+    <alv-editable-cell :defaultValue="cellValue" :beforeUpdate="cellBeforeUpdate" :onUpdate="cellUpdate" :shouldEditing="cellShouldEditing">{{cellValue}}</alv-editable-cell>
   </div>
 </template>
 <script>
-import { AlvButton, AlvCascader, AlvDrawer } from '../components'
+import { AlvButton, AlvCascader, AlvDrawer, AlvEditableCell } from '../components'
 
 const { AlvBackButton, AlvConfirmButton, AlvGroupButton } = AlvButton
 const { AlvMultiCascader } = AlvCascader
@@ -36,6 +37,7 @@ export default {
     AlvGroupButton,
     AlvMultiCascader,
     AlvDrawer,
+    AlvEditableCell,
   },
   data () {
     this.groupButtonData = [
@@ -80,6 +82,7 @@ export default {
     return {
       testTxt: 'test1',
       drawerVisible: false,
+      cellValue: 100,
     }
   },
   methods: {
@@ -110,6 +113,18 @@ export default {
     drawerOk () {
       this.hideDrawer()
       console.log('===drawer ok')
+    },
+    cellShouldEditing () {
+      return false
+    },
+    cellBeforeUpdate (val) {
+      console.log('cell before update', val)
+      return val
+    },
+    cellUpdate (val) {
+      console.log('cell update', val)
+      this.cellValue = val
+      return Promise.resolve()
     },
   }
 }
