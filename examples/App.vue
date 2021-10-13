@@ -31,11 +31,14 @@
         <alv-list-item label="称谓">法外狂徒</alv-list-item>
       </alv-thumb-list>
     </div>
+    <div style="position: relative;width: 300px;height: 200px;">
+      <alv-loading :loading="true" />
+    </div>
   </div>
 </template>
 
 <script>
-import { AlvButton, AlvCascader, AlvDrawer, AlvEditableCell, AlvList } from '../components'
+import { AlvButton, AlvCascader, AlvDrawer, AlvEditableCell, AlvList, AlvLoading } from '../components'
 
 const { AlvBackButton, AlvConfirmButton, AlvGroupButton } = AlvButton
 const { AlvMultiCascader } = AlvCascader
@@ -53,6 +56,7 @@ export default {
     AlvList,
     AlvListItem,
     AlvThumbList,
+    AlvLoading,
   },
   data () {
     this.groupButtonData = [
