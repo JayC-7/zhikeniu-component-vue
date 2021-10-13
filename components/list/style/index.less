@@ -1,0 +1,48 @@
+@import '../../style/variables.less';
+
+@cols: range(4);
+
+.col() {
+  each(@cols, {
+    &-col-@{key} {
+      .alv-list-item {
+        width: (100% / @key);
+      }
+    }
+  })
+}
+
+// default list
+.alv-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+
+  .col;
+}
+
+// thumb list
+.alv-thumb-list {
+  display: flex;
+  flex-direction: row;
+  
+  &-thumb {
+    flex-shrink: 0;
+    flex-grow: 0;
+    padding-right: 32px;
+    overflow: hidden;
+
+    img {
+      display: block;
+      width: 100%;
+      border: 1px solid @alv-border-color;
+      border-radius: @alv-border-radius-sm;
+    }
+  }
+
+  &-list {
+    align-items: center;
+  }
+}

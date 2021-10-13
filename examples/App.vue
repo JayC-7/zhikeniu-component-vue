@@ -21,13 +21,25 @@
       hello~
     </alv-drawer>
     <alv-editable-cell :defaultValue="cellValue" :beforeUpdate="cellBeforeUpdate" :onUpdate="cellUpdate" :shouldEditing="cellShouldEditing">{{cellValue}}</alv-editable-cell>
+    <alv-list :col="2">
+      <alv-list-item label="姓名">张三</alv-list-item>
+      <alv-list-item label="称谓">法外狂徒</alv-list-item>
+    </alv-list>
+    <div style="width: 260px;">
+      <alv-thumb-list thumb="./bg.png">
+        <alv-list-item label="姓名">张三</alv-list-item>
+        <alv-list-item label="称谓">法外狂徒</alv-list-item>
+      </alv-thumb-list>
+    </div>
   </div>
 </template>
+
 <script>
-import { AlvButton, AlvCascader, AlvDrawer, AlvEditableCell } from '../components'
+import { AlvButton, AlvCascader, AlvDrawer, AlvEditableCell, AlvList } from '../components'
 
 const { AlvBackButton, AlvConfirmButton, AlvGroupButton } = AlvButton
 const { AlvMultiCascader } = AlvCascader
+const { AlvListItem, AlvThumbList } = AlvList
 
 export default {
   components: {
@@ -38,6 +50,9 @@ export default {
     AlvMultiCascader,
     AlvDrawer,
     AlvEditableCell,
+    AlvList,
+    AlvListItem,
+    AlvThumbList,
   },
   data () {
     this.groupButtonData = [

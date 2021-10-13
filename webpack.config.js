@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // 解析.env文件，注入process.env
 const dotenv = require('dotenv').config({ path: path.join(__dirname, '/.env') })
@@ -90,6 +91,13 @@ module.exports = {
           'css-loader',
         ],
       },
+      {
+        test: /\.(jpg|png|jpeg|gif|webp|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]?[hash]'
+        }
+      }
     ]
   },
   resolve: {
@@ -133,5 +141,14 @@ module.exports = {
     }),
 
     new VueLoaderPlugin(),
+
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.join(__dirname, '/examples/image'),
+          to: path.join(__dirname, '/dist')
+        }
+      ]
+    })
   ]
 }
