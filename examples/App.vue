@@ -34,11 +34,20 @@
     <div style="position: relative;width: 300px;height: 200px;">
       <alv-loading :loading="true" />
     </div>
+    <alv-textarea value="123" />
   </div>
 </template>
 
 <script>
-import { AlvButton, AlvCascader, AlvDrawer, AlvEditableCell, AlvList, AlvLoading } from '../components'
+import {
+  AlvButton,
+  AlvCascader,
+  AlvDrawer,
+  AlvEditableCell,
+  AlvList,
+  AlvLoading,
+  AlvTextarea,
+} from '../components'
 
 const { AlvBackButton, AlvConfirmButton, AlvGroupButton } = AlvButton
 const { AlvMultiCascader } = AlvCascader
@@ -57,6 +66,7 @@ export default {
     AlvListItem,
     AlvThumbList,
     AlvLoading,
+    AlvTextarea,
   },
   data () {
     this.groupButtonData = [
