@@ -34,7 +34,8 @@
     <div style="position: relative;width: 300px;height: 200px;">
       <alv-loading :loading="true" />
     </div>
-    <alv-textarea value="123" />
+    <alv-textarea value="123" @change="textareaChange" />
+    <alv-radio-group :dataSource="radioData" hasCustome @change="radioGroupChange" :customeMax="50" :customeRow="2"></alv-radio-group>
   </div>
 </template>
 
@@ -47,11 +48,13 @@ import {
   AlvList,
   AlvLoading,
   AlvTextarea,
+  AlvRadio,
 } from '../components'
 
 const { AlvBackButton, AlvConfirmButton, AlvGroupButton } = AlvButton
 const { AlvMultiCascader } = AlvCascader
 const { AlvListItem, AlvThumbList } = AlvList
+const { AlvRadioGroup } = AlvRadio
 
 export default {
   components: {
@@ -67,6 +70,7 @@ export default {
     AlvThumbList,
     AlvLoading,
     AlvTextarea,
+    AlvRadioGroup,
   },
   data () {
     this.groupButtonData = [
@@ -106,6 +110,16 @@ export default {
       {
         value: 'p2',
         label: 'P2'
+      }
+    ]
+    this.radioData = [
+      {
+        label: 'a',
+        value: 'a'
+      },
+      {
+        label: 'b',
+        value: 'b'
       }
     ]
     return {
@@ -155,6 +169,12 @@ export default {
       this.cellValue = val
       return Promise.resolve()
     },
+    textareaChange (value) {
+      console.log('===textareaChange', value)
+    },
+    radioGroupChange (value) {
+      console.log('===radioGroupChange', value)
+    }
   }
 }
 </script>

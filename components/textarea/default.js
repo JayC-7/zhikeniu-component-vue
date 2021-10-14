@@ -42,8 +42,8 @@ export default {
       let value = val
       if (val.length > this.max) {
         value = val.slice(0, this.max)
-        this.onChange(value)
       }
+      this.onChange(value)
       this.current = value.length
       this.textValue = value
     },

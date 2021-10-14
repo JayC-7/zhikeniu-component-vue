@@ -14,7 +14,7 @@
 :white_medium_square: Select
 :white_medium_square: Table
 :white_medium_square: TableSearch(Filter)
-:white_medium_square: TextArea
+:white_check_mark: TextArea
 :white_medium_square: Title
 :white_medium_square: Tooltip
 :white_medium_square: Upload
