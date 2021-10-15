@@ -6,7 +6,7 @@ const props = {
   value: Number | String | Boolean,
   dataSource: {
     type: Array,
-    default: () => { return [] }
+    default: () => { return [] },
   },
   hasCustome: Boolean,
   customeMax: Number,

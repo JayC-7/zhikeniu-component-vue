@@ -36,6 +36,10 @@
     </div>
     <alv-textarea value="123" @change="textareaChange" />
     <alv-radio-group :dataSource="radioData" hasCustome @change="radioGroupChange" :customeMax="50" :customeRow="2"></alv-radio-group>
+    <alv-select v-model="selectValue">
+      <alv-select-option value="a">A</alv-select-option>
+      <alv-select-option value="b">B</alv-select-option>
+    </alv-select>
   </div>
 </template>
 
@@ -49,12 +53,14 @@ import {
   AlvLoading,
   AlvTextarea,
   AlvRadio,
+  AlvSelect,
 } from '../components'
 
 const { AlvBackButton, AlvConfirmButton, AlvGroupButton } = AlvButton
 const { AlvMultiCascader } = AlvCascader
 const { AlvListItem, AlvThumbList } = AlvList
 const { AlvRadioGroup } = AlvRadio
+const { AlvSelectOption, AlvSearchSelect } = AlvSelect
 
 export default {
   components: {
@@ -71,6 +77,9 @@ export default {
     AlvLoading,
     AlvTextarea,
     AlvRadioGroup,
+    AlvSelect,
+    AlvSelectOption,
+    AlvSearchSelect,
   },
   data () {
     this.groupButtonData = [
@@ -126,6 +135,7 @@ export default {
       testTxt: 'test1',
       drawerVisible: false,
       cellValue: 100,
+      selectValue: 'a',
     }
   },
   methods: {
@@ -174,6 +184,9 @@ export default {
     },
     radioGroupChange (value) {
       console.log('===radioGroupChange', value)
+    },
+    selectChange (val) {
+      console.log('====selectChange', val)
     }
   }
 }

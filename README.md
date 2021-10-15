@@ -10,7 +10,7 @@
 :white_check_mark: List
 :white_check_mark: Loading
 :white_medium_square: Modal  暂不实现
-:white_medium_square: Radio
+:white_check_mark: Radio
 :white_medium_square: Select
 :white_medium_square: Table
 :white_medium_square: TableSearch(Filter)
