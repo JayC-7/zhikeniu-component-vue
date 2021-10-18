@@ -40,6 +40,8 @@
       <alv-select-option value="a">A</alv-select-option>
       <alv-select-option value="b">B</alv-select-option>
     </alv-select>
+    <alv-title title="这是标题" description="这是描述" />
+    <alv-tooltip :width="200" placement="right">hello world</alv-tooltip>
   </div>
 </template>
 
@@ -54,6 +56,8 @@ import {
   AlvTextarea,
   AlvRadio,
   AlvSelect,
+  AlvTitle,
+  AlvTooltip,
 } from '../components'
 
 const { AlvBackButton, AlvConfirmButton, AlvGroupButton } = AlvButton
@@ -80,6 +84,8 @@ export default {
     AlvSelect,
     AlvSelectOption,
     AlvSearchSelect,
+    AlvTitle,
+    AlvTooltip,
   },
   data () {
     this.groupButtonData = [
